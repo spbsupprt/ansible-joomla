@@ -16,7 +16,7 @@
 Скачайте проект с GitHub и перейдите в его директорию:
 
 ```bash
-git clone https://github.com/ansible-joomla
+git clone https://github.com/spbsupprt/ansible-joomla
 cd ansible-joomla
 ```
 
