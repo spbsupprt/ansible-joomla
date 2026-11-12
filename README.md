@@ -27,7 +27,9 @@ cd ansible-joomla
 ```bash
 nano inventory.yaml
 
-echo "joomla_vault_password" > .vault_pass chmod 600 .vault_pass
+echo "joomla_vault_password" > .vault_pass
+chmod 600 .vault_pass
+
 ```
 
 *(Опционально)* Проверьте и при необходимости отредактируйте переменные в `site.yaml` или директории `group_vars` / `vars` (например, параметры базы данных, доменное имя или версию Joomla).
