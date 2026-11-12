@@ -1,0 +1,13 @@
+---
+php_version: "8.1"
+php_packages:
+  - "php{{ php_version }}"
+  - "php{{ php_version }}-fpm"
+  - "php{{ php_version }}-mysql"
+  - "php{{ php_version }}-curl"
+  - "php{{ php_version }}-gd"
+  - "php{{ php_version }}-mbstring"
+  - "php{{ php_version }}-xml"
+  - "php{{ php_version }}-zip"
+php_fpm_socket: "/run/php/php{{ php_version }}-fpm.sock"
+php_user: "www-data"

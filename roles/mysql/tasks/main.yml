@@ -1,0 +1,56 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install MySQL server
+  ansible.builtin.apt:
+    name:
+      - mysql-server
+      - python3-pymysql
+    state: present
+
+- name: Start and enable MySQL
+  ansible.builtin.service:
+    name: mysql
+    state: started
+    enabled: true
+
+- name: Set MySQL root password - change auth plugin
+  ansible.builtin.shell: |
+    mysql -u root << SQL
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '{{ mysql_root_password }}';
+    FLUSH PRIVILEGES;
+    SQL
+  changed_when: false
+
+- name: Create .my.cnf for root
+  ansible.builtin.file:
+    path: /root/.my.cnf
+    state: touch
+    mode: '0600'
+
+- name: Configure .my.cnf with root credentials
+  ansible.builtin.blockinfile:
+    path: /root/.my.cnf
+    block: |
+      [client]
+      user=root
+      password={{ mysql_root_password }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+
+- name: Create MySQL admin user
+  community.mysql.mysql_user:
+    name: "{{ mysql_admin_user }}"
+    password: "{{ mysql_admin_password }}"
+    priv: "{{ mysql_admin_privileges }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+- name: Create Joomla database
+  community.mysql.mysql_db:
+    name: "{{ mysql_joomla_db }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"

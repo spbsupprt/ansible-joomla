@@ -1,0 +1,10 @@
+all:
+  hosts:
+    web01:
+      ansible_host: 84.252.134.155
+      ansible_user: user
+      ansible_password: jxyeepuixe
+  children:
+    webservers:
+      hosts:
+        web01:

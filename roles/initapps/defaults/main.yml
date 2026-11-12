@@ -1,0 +1,7 @@
+---
+joomla_root: /var/www/sites/joomla
+joomla_config_path: /etc/nginx/sites-available/joomla.conf
+joomla_config_enabled: /etc/nginx/sites-enabled/joomla.conf
+nginx_user: www-data
+php_version: "8.1"
+php_fpm_socket: "/run/php/php8.1-fpm.sock"

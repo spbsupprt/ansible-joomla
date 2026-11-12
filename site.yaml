@@ -1,0 +1,13 @@
+---
+- name: Deploy LEMP Stack with Joomla
+  hosts: webservers
+  become: true
+  vars_files:
+    - passwords.vault
+
+  roles:
+    - nginx
+    - php
+    - mysql
+    - initapps
+    - joomla

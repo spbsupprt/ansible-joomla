@@ -1,0 +1,36 @@
+---
+- name: Create Joomla root directory
+  ansible.builtin.file:
+    path: "{{ joomla_root }}"
+    state: directory
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_user }}"
+    mode: '0755'
+
+- name: Deploy Nginx Joomla config
+  ansible.builtin.template:
+    src: joomla.conf.j2
+    dest: "{{ joomla_config_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Reload Nginx
+
+- name: Create symlink for Joomla site
+  ansible.builtin.file:
+    src: "{{ joomla_config_path }}"
+    dest: "{{ joomla_config_enabled }}"
+    state: link
+    force: true
+  notify: Reload Nginx
+
+- name: Ensure web directories have correct permissions
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_user }}"
+    mode: '0755'
+    recurse: true
+  loop:
+    - /var/www
+    - "{{ joomla_root }}"

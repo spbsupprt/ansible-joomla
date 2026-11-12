@@ -1,0 +1,5 @@
+---
+mysql_root_user: root
+mysql_admin_user: admin
+mysql_admin_privileges: "*.*:ALL"
+mysql_joomla_db: joomla_db

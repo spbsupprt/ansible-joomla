@@ -1,0 +1,5 @@
+---
+joomla_version: "5.1.4"
+joomla_root: /var/www/sites/joomla
+joomla_url: "https://github.com/joomla/joomla-cms/releases/download/{{ joomla_version }}/Joomla_{{ joomla_version }}-Stable-Full_Package.tar.gz"
+nginx_user: www-data

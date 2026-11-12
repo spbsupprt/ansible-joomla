@@ -1,0 +1,29 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install software-properties-common
+  ansible.builtin.apt:
+    name: software-properties-common
+    state: present
+
+- name: Add PHP PPA
+  ansible.builtin.command: add-apt-repository ppa:ondrej/php -y
+  register: ppa_added
+  changed_when: ppa_added.rc == 0
+
+- name: Update apt cache after PPA
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install PHP packages
+  ansible.builtin.apt:
+    name: "{{ php_packages }}"
+    state: present
+
+- name: Start and enable PHP-FPM
+  ansible.builtin.service:
+    name: "php{{ php_version }}-fpm"
+    state: started
+    enabled: true
