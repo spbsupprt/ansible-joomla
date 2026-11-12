@@ -26,6 +26,8 @@ cd ansible-joomla
 
 ```bash
 nano inventory.yaml
+
+echo "joomla_vault_password" > .vault_pass chmod 600 .vault_pass
 ```
 
 *(Опционально)* Проверьте и при необходимости отредактируйте переменные в `site.yaml` или директории `group_vars` / `vars` (например, параметры базы данных, доменное имя или версию Joomla).
@@ -46,8 +48,3 @@ ansible -i inventory.yaml all -m ping
 ansible-playbook -i inventory.yaml site.yaml
 ```
 
-Если для выполнения задач на удаленном сервере требуется ввод пароля `sudo`, добавьте флаг `-K` (`--ask-become-pass`):
-
-```bash
-ansible-playbook -i inventory.yaml site.yaml -K
-```
