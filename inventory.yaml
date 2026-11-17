@@ -1,9 +1,9 @@
 all:
   hosts:
     web01:
-      ansible_host: 153.51.166.218
+      ansible_host: 153.51.172.137
       ansible_user: user
-      ansible_password: mdnthhwztp
+      ansible_password: rkdnogimws
   children:
     webservers:
       hosts:
