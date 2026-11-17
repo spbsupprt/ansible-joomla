@@ -48,3 +48,24 @@ ansible -i inventory.yaml all -m ping
 ansible-playbook -i inventory.yaml site.yaml
 ```
 
+### 5. Переходим по адресу из inventory и вводим название нашего сайта и учетные данные пользователя.
+
+<img width="694" height="561" alt="image" src="https://github.com/user-attachments/assets/14c99b44-191c-4ca4-974b-e267e7eb6950" />
+
+
+### 6. Необходимо выбрать Тип Баз данных и логин\пароль
+
+<img width="651" height="864" alt="image" src="https://github.com/user-attachments/assets/ffb56675-17b1-48ed-959f-374431922498" />
+
+и учетные данные БД (посмотреть пароль можно командой)
+
+```bash
+ansible-vault view passwords.vault
+```
+
+Имя и префикс оставить по дефолту.
+
+### 6. Дождаться установки и наслаждаться результатом.
+
+<img width="659" height="633" alt="image" src="https://github.com/user-attachments/assets/3e1bb353-d6b9-40e7-a69f-adea5da743bd" />
+
